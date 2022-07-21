@@ -11,7 +11,7 @@ class CiCdApplicationTests {
     @Test
     void contextLoads() {
 
-        assertEquals(3, Calculator.add(2, 2));
+        assertEquals(3, Calculator.add(1, 2));
 
 
 
