@@ -10,12 +10,9 @@ class CiCdApplicationTests {
 
     @Test
     void contextLoads() {
-        try {
-            assertEquals(3, Calculator.add(2, 2));
-            System.out.println("result okay");
-        } catch (AssertionError e) {
-            e.printStackTrace();
-        }
+
+        assertEquals(3, Calculator.add(2, 2));
+
 
 
     }
