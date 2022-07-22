@@ -22,8 +22,8 @@ pipeline {
         }
         stage('docker build and deliver to docker hub') {
             steps {
-                sh '''exit
-                      cd /etc/jenkins_home/workspace/cicdJenkins
+                sh '''
+                      cd /var/jenkins_home/workspace/cicdJenkins
                       docker build -t cicd:v1.0 .
                       docker tag cicd:v1.0 kloseqz/cicdjenkins:v1.0
                       docker push kloseqz/cicdjenkins:v1.0
