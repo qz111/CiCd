@@ -32,7 +32,8 @@ pipeline {
         }*/
         stage('deploy over ssh') {
             steps {
-                sshPublisher(publishers: [sshPublisherDesc(configName: 'hostfordeploy', sshRetry: [retries: 5, retryDelay: 10000], transfers: [sshTransfer(cleanRemote: false, excludes: '', execCommand: '''sudo docker pull kloseqz/cicdjenkins:v1.0
+                sshPublisher(publishers: [sshPublisherDesc(configName: 'hostfordeploy', sshRetry: [retries: 1, retryDelay: 10000], transfers: [sshTransfer(cleanRemote: false, excludes: '', execCommand: '''sudo docker login -u kloseqz -p 199102113411
+                sudo docker pull kloseqz/cicdjenkins:v1.0
                 sudo docker run -p 8801:8080 -d --name mycicdjenkins kloseqz/cicdjenkins:v1.0''', execTimeout: 120000, flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+', remoteDirectory: '', remoteDirectorySDF: false, removePrefix: '', sourceFiles: '')], usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: false)])
             }
         }
