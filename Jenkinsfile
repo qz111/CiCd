@@ -20,7 +20,7 @@ pipeline {
                 }
             }
         }
-        stage('docker build and deliver to docker hub') {
+        /*stage('docker build and deliver to docker hub') {
             steps {
                 sh '''
                       cd /var/jenkins_home/workspace/cicdJenkins
@@ -28,6 +28,12 @@ pipeline {
                       docker tag cicd:v1.0 kloseqz/cicdjenkins:v1.0
                       docker push kloseqz/cicdjenkins:v1.0
                 '''
+            }
+        }*/
+        stage('deploy over ssh') {
+            steps {
+                sshPublisher(publishers: [sshPublisherDesc(configName: 'hostfordeploy', transfers: [sshTransfer(cleanRemote: false, excludes: '', execCommand: '''docker pull kloseqz/cicdjenkins:v1.0
+                docker run -p 8801:8080 -d --name mycicdjenkins kloseqz/cicdjenkins:v1.0''', execTimeout: 120000, flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+', remoteDirectory: '', remoteDirectorySDF: false, removePrefix: '', sourceFiles: '')], usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: false)])
             }
         }
     }
