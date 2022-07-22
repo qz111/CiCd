@@ -20,5 +20,14 @@ pipeline {
                 }
             }
         }
+        stage('docker build and deliver to docker hub') {
+            steps {
+                sh '''docker build -t cicd:v1.0 .
+                      docker login --username kloseqz
+                      docker tag cicd:v1.0 kloseqz/cicdjenkins:v1.0
+                      docker push kloseqz/cicdjenkins:v1.0
+                '''
+            }
+        }
     }
 }
