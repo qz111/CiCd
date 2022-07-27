@@ -10,16 +10,16 @@ pipeline {
                 sh 'mvn -B -DskipTests clean package'
             }
         }
-        stage('test') {
+        /*stage('test') {
             steps {
                 sh 'mvn test'
             }
-            /*post {
+            post {
                 always {
                     junit 'target/surefire-reports/*.xml'
                 }
-            }*/
-        }
+            }
+        }*/
         stage('docker build and deliver to docker hub') {
             steps {
                 sh '''
