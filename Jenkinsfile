@@ -10,7 +10,7 @@ pipeline {
                 sh 'mvn -B -DskipTests clean package'
             }
         }
-        /*stage('test') {
+        stage('test') {
             steps {
                 sh 'mvn test'
             }
@@ -19,8 +19,8 @@ pipeline {
                     junit 'target/surefire-reports/*.xml'
                 }
             }
-        }*/
-        /*stage('docker build and deliver to docker hub') {
+        }
+        stage('docker build and deliver to docker hub') {
             steps {
                 sh '''
                       cd /var/jenkins_home/workspace/cicdJenkins
@@ -29,7 +29,7 @@ pipeline {
                       docker push kloseqz/cicdjenkins:v1.0
                 '''
             }
-        }*/
+        }
         stage('deploy over ssh') {
             steps {
                 script{
