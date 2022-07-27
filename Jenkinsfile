@@ -24,18 +24,18 @@ pipeline {
             steps {
                 sh '''
                       cd /var/jenkins_home/workspace/cicdJenkins
-                      docker build -t cicd:v1.0 .
-                      docker tag cicd:v1.0 kloseqz/cicdjenkins:v1.0
-                      docker push kloseqz/cicdjenkins:v1.0
+                      docker build -t cicd:v1.1 .
+                      docker tag cicd:v1.1 kloseqz/cicdjenkins:v1.1
+                      docker push kloseqz/cicdjenkins:v1.1
                 '''
             }
         }
-        stage('deploy over ssh') {
+        /*stage('deploy over ssh') {
             steps {
                 script{
                     sshPublisher(publishers: [sshPublisherDesc(configName: 'hostfordeploy', sshRetry: [retries: 5, retryDelay: 10000], transfers: [sshTransfer(cleanRemote: false, excludes: '', execCommand: 'sh /opt/jenkins_shell/deploy.sh', execTimeout: 120000, flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+', remoteDirectory: '/opt/jenkins_shell/', remoteDirectorySDF: false, removePrefix: '', sourceFiles: '/var/jenkins_home/deploy.sh')], usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: false)])
                 }
             }
-        }
+        }*/
     }
 }
